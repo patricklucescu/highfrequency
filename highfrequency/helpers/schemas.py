@@ -6,6 +6,7 @@ import polars as pl
 ColumnInfo = namedtuple('ColumnInfo', ['name', 'dtype'])
 ColumnInfo.__new__.__defaults__ = (None,)  # Set default for dtype to None
 
+
 class TColumns(Enum):
     """
     | Enum class to map the trade data names to the classes as well as data types.
@@ -13,8 +14,10 @@ class TColumns(Enum):
     TIME = ColumnInfo(name='dt', dtype=pl.Datetime)
     PRICE = ColumnInfo(name='price', dtype=pl.Float64)
     SIZE = ColumnInfo(name='size', dtype=[pl.Float64, pl.Int64])
-    SYMBOL = ColumnInfo(name='price', dtype=pl.String)
+    SYMBOL = ColumnInfo(name='symbol', dtype=pl.String)
+    CONDITION = ColumnInfo(name='cond', dtype=pl.String)
     EXCHANGE = ColumnInfo(name='ex', dtype=pl.String)
+    CORR = ColumnInfo(name='corr', dtype=[pl.Float64, pl.Int64])
 
 class QColumns(Enum):
     """
@@ -25,8 +28,7 @@ class QColumns(Enum):
     OFR = ColumnInfo(name='ofr', dtype=pl.Float64)
     BIDSIZ = ColumnInfo(name='bidsiz', dtype=[pl.Float64, pl.Int64])
     OFRSIZ = ColumnInfo(name='ofrsiz', dtype=[pl.Float64, pl.Int64])
-    SYMBOL = ColumnInfo(name='price', dtype=pl.String)
-    SYM_ROOT = ColumnInfo(name='price', dtype=pl.String)
+    SYMBOL = ColumnInfo(name='symbol', dtype=pl.String)
     EXCHANGE = ColumnInfo(name='ex', dtype=pl.String)
 
 
